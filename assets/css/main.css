@@ -211,7 +211,7 @@ h3 {
 }
 
 h1 {
-    font-size: clamp(3.4rem, 8vw, 8rem);
+    font-size: clamp(2.7rem, 6vw, 6.2rem);
 }
 
 h2 {
@@ -991,8 +991,16 @@ p {
 }
 
 .page-hero__content {
-    width: min(920px, calc(100% - 40px));
+    width: min(1280px, calc(100% - 40px));
     margin-inline: auto;
+    text-align: center;
+}
+
+.page-hero__content h1 {
+    max-width: 1180px;
+    margin-inline: auto;
+    text-align: center;
+    line-height: 1.02;
 }
 
 .page-hero__content p {
@@ -1938,5 +1946,26 @@ html.has-horizontal-overflow body {
     .icon-btn {
         width: 40px;
         height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: clamp(2.35rem, 12vw, 4.2rem);
+    }
+
+    .page-hero__content {
+        width: min(100% - 28px, 1280px);
+    }
+
+    .page-hero__content h1 {
+        max-width: 100%;
+        line-height: 1.03;
+    }
+}
+
+@media (max-width: 420px) {
+    h1 {
+        font-size: clamp(2.15rem, 11vw, 3.4rem);
     }
 }
