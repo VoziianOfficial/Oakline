@@ -1768,3 +1768,175 @@ p {
         transition-duration: .01ms !important;
     }
 }
+
+/* ================================
+   Final Stability Fixes
+================================ */
+
+/* Prevent accidental horizontal overflow from animated / transformed elements */
+.site-header,
+.mobile-menu,
+.page-hero,
+.home-hero,
+.global-cta,
+.site-footer,
+.cookie-banner,
+.section {
+    max-width: 100vw;
+}
+
+/* Better active state for service dropdown link */
+.nav-dropdown .nav-trigger.is-active {
+    color: var(--accent-yellow);
+    background: rgba(239, 196, 19, .06);
+}
+
+.nav-dropdown .nav-trigger.is-active::after {
+    transform: scaleX(1);
+}
+
+/* Make generated SVG icons inside buttons always centered */
+.btn i,
+.icon-btn i,
+.mobile-burger i,
+.nav-trigger i,
+.footer-contact__item i,
+.mobile-menu__service i,
+.mobile-menu__contact i {
+    display: inline-grid;
+    place-items: center;
+    line-height: 0;
+}
+
+/* Fix Safari icon alignment */
+.btn svg,
+.icon-btn svg,
+.mobile-burger svg,
+.nav-trigger svg,
+.footer-contact__item svg,
+.mobile-menu__service svg,
+.mobile-menu__contact svg {
+    flex: 0 0 auto;
+}
+
+/* Make iframe/dev-server warning overlays less likely to cause x-scroll */
+body>* {
+    max-width: 100%;
+}
+
+/* Legal / cookie banner should not cover full mobile screen */
+.cookie-banner {
+    max-height: calc(100vh - 28px);
+    overflow-y: auto;
+}
+
+/* Better mobile menu tap comfort */
+.mobile-menu__panel {
+    overscroll-behavior: contain;
+}
+
+/* Better image rendering */
+img {
+    background-color: var(--brown-deep);
+}
+
+/* Better fallback if any background image is missing */
+.page-hero,
+.home-hero,
+.home-cta-strip,
+.global-cta__card,
+.service-page-cta__card,
+.legal-hero {
+    background-color: var(--black-main);
+}
+
+/* Keep forms from overflowing on very small screens */
+.form-row input,
+.form-row textarea,
+.form-row select {
+    min-width: 0;
+}
+
+/* Extra focus state for clickable cards */
+.service-preview-card:focus-visible,
+.problem-card:focus-visible,
+.related-card:focus-visible,
+.step-card:focus-visible,
+.services-marquee__link:focus-visible,
+.icon-strip__link:focus-visible {
+    outline: 2px solid var(--accent-yellow);
+    outline-offset: -4px;
+}
+
+/* Improve card focus behavior */
+.related-card.is-focused,
+.step-card.is-focused {
+    border-color: var(--border-accent);
+}
+
+/* Smooth image opacity change in all-services switcher */
+.services-switcher__image {
+    will-change: opacity, transform;
+}
+
+/* Hide AOS horizontal transform overflow on mobile */
+[data-aos] {
+    max-width: 100%;
+}
+
+/* If JS detects x-overflow, this helps debug without breaking layout */
+html.has-horizontal-overflow body {
+    overflow-x: hidden;
+}
+
+/* Footer legal links should wrap nicely */
+.footer-legal a {
+    white-space: nowrap;
+}
+
+/* Better CTA readability when images are bright */
+.global-cta__card,
+.service-page-cta__card {
+    text-shadow: 0 12px 34px rgba(0, 0, 0, .36);
+}
+
+/* Mobile hero button spacing */
+@media (max-width: 768px) {
+
+    .page-hero__buttons .btn+.btn,
+    .legal-hero__buttons .btn+.btn {
+        margin-top: 0;
+    }
+
+    .footer-legal a {
+        white-space: normal;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 390px) {
+    .header-shell {
+        width: calc(100% - 16px);
+        padding-left: 10px;
+        padding-right: 8px;
+    }
+
+    .site-logo {
+        gap: 8px;
+    }
+
+    .site-logo__text {
+        font-size: .92rem;
+    }
+
+    .site-logo__mark,
+    .site-logo__mark svg {
+        width: 34px;
+    }
+
+    .mobile-burger,
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+}
