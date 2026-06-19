@@ -41,6 +41,8 @@
         initDemoForms();
         initNoOverflowWatch();
 
+        initOaklineLightFaq();
+
         initLibraries();
     });
 
@@ -650,6 +652,37 @@
                 <span>${service.title}</span>
             </a>
         `).join('');
+    }
+
+    function initOaklineLightFaq() {
+        const items = document.querySelectorAll('.oakline-faq-light__item');
+        if (!items.length) return;
+
+        items.forEach((item) => {
+            const button = item.querySelector('.oakline-faq-light__button');
+            const panel = item.querySelector('.oakline-faq-light__panel');
+
+            if (!button || !panel) return;
+
+            button.addEventListener('click', () => {
+                const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+                items.forEach((otherItem) => {
+                    const otherButton = otherItem.querySelector('.oakline-faq-light__button');
+                    const otherPanel = otherItem.querySelector('.oakline-faq-light__panel');
+
+                    if (!otherButton || !otherPanel) return;
+
+                    otherButton.setAttribute('aria-expanded', 'false');
+                    otherPanel.classList.remove('is-open');
+                });
+
+                if (!isOpen) {
+                    button.setAttribute('aria-expanded', 'true');
+                    panel.classList.add('is-open');
+                }
+            });
+        });
     }
 
     function getLogoSvg() {

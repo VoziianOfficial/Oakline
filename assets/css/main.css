@@ -1970,3 +1970,267 @@ html.has-horizontal-overflow body {
     }
 }
 
+/* ================================
+   Oakline Light FAQ Section
+================================ */
+
+.oakline-faq-light {
+    position: relative;
+    padding: clamp(72px, 8vw, 108px) 0;
+    background: var(--light-bg);
+    color: var(--light-text);
+    overflow: hidden;
+}
+
+.oakline-faq-light__bg-logo {
+    position: absolute;
+    top: 50%;
+    right: clamp(-40px, 4vw, 40px);
+    transform: translateY(-50%);
+    width: clamp(280px, 36vw, 520px);
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.oakline-faq-light__bg-logo svg {
+    width: 100%;
+    height: auto;
+}
+
+.oakline-faq-light .container-wide {
+    position: relative;
+    z-index: 2;
+}
+
+.oakline-faq-light__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, .7fr) minmax(0, 1fr);
+    gap: clamp(34px, 6vw, 84px);
+    align-items: start;
+}
+
+.oakline-faq-light__intro {
+    max-width: 520px;
+}
+
+.oakline-faq-light__kicker {
+    color: var(--accent-yellow-dark);
+}
+
+.oakline-faq-light__intro h2 {
+    max-width: 760px;
+    color: var(--light-text);
+}
+
+.oakline-faq-light__intro p {
+    margin-top: 18px;
+    color: var(--light-muted);
+    max-width: 560px;
+}
+
+.oakline-faq-light__mini-points {
+    display: grid;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.oakline-faq-light__mini-point {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--light-text);
+    font-weight: 700;
+}
+
+.oakline-faq-light__mini-point svg {
+    width: 23px;
+    height: 23px;
+    color: var(--accent-yellow-dark);
+    stroke-width: 1.8;
+    flex: 0 0 auto;
+}
+
+.oakline-faq-light__accordion {
+    display: grid;
+    gap: 0;
+    width: 100%;
+}
+
+.oakline-faq-light__item {
+    border-bottom: 1px solid rgba(60, 42, 24, 0.16);
+}
+
+.oakline-faq-light__item:first-child {
+    border-top: 1px solid rgba(60, 42, 24, 0.16);
+}
+
+.oakline-faq-light__button {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30px 1fr 28px;
+    align-items: center;
+    gap: 18px;
+    padding: 22px 0;
+    border: 0;
+    background: transparent;
+    color: var(--light-text);
+    text-align: left;
+    transition: color var(--transition), padding var(--transition);
+}
+
+.oakline-faq-light__button:hover,
+.oakline-faq-light__button[aria-expanded="true"] {
+    color: #7E5B22;
+}
+
+.oakline-faq-light__button-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.oakline-faq-light__button-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-yellow-dark);
+    stroke-width: 1.8;
+}
+
+.oakline-faq-light__button-text {
+    position: relative;
+    font-family: 'Oswald', 'Inter', sans-serif;
+    font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: -.02em;
+}
+
+.oakline-faq-light__button-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.oakline-faq-light__button:hover .oakline-faq-light__button-text::after,
+.oakline-faq-light__button[aria-expanded="true"] .oakline-faq-light__button-text::after {
+    transform: scaleX(1);
+}
+
+.oakline-faq-light__button-plus {
+    justify-self: end;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+}
+
+.oakline-faq-light__button-plus svg {
+    width: 22px;
+    height: 22px;
+    color: #7E5B22;
+    stroke-width: 2.1;
+    transition: transform var(--transition), color var(--transition);
+}
+
+.oakline-faq-light__button[aria-expanded="true"] .oakline-faq-light__button-plus svg {
+    transform: rotate(45deg);
+    color: var(--accent-yellow-dark);
+}
+
+.oakline-faq-light__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 320ms ease;
+}
+
+.oakline-faq-light__panel.is-open {
+    grid-template-rows: 1fr;
+}
+
+.oakline-faq-light__panel-inner {
+    overflow: hidden;
+}
+
+.oakline-faq-light__panel-inner p {
+    max-width: 860px;
+    padding: 0 40px 20px 48px;
+    margin: 0;
+    color: #6A5D4F;
+    line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .oakline-faq-light__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .oakline-faq-light__bg-logo {
+        right: -20px;
+        top: auto;
+        bottom: -30px;
+        transform: none;
+        width: 280px;
+        opacity: 0.14;
+    }
+}
+
+@media (max-width: 768px) {
+    .oakline-faq-light {
+        padding: 68px 0;
+    }
+
+    .oakline-faq-light__button {
+        grid-template-columns: 24px 1fr 24px;
+        gap: 12px;
+        padding: 18px 0;
+    }
+
+    .oakline-faq-light__button-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .oakline-faq-light__button-plus svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .oakline-faq-light__panel-inner p {
+        padding: 0 0 18px 36px;
+    }
+}
+
+@media (max-width: 560px) {
+    .oakline-faq-light__intro {
+        max-width: 100%;
+    }
+
+    .oakline-faq-light__mini-points {
+        gap: 10px;
+    }
+
+    .oakline-faq-light__button-text {
+        font-size: 1.05rem;
+        line-height: 1.15;
+    }
+
+    .oakline-faq-light__panel-inner p {
+        padding-left: 0;
+    }
+
+    .oakline-faq-light__bg-logo {
+        width: 220px;
+        opacity: 0.12;
+    }
+}
