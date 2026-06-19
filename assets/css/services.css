@@ -1,0 +1,435 @@
+/* ================================
+   Service Detail Pages
+================================ */
+
+.service-overview,
+.service-steps,
+.service-related {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* ================================
+   Service Overview / Split Black
+================================ */
+
+.service-overview {
+    padding: clamp(86px, 10vw, 150px) 0;
+    background: var(--black-main);
+}
+
+.service-overview__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(360px, 1.05fr);
+    align-items: center;
+    gap: clamp(44px, 7vw, 110px);
+}
+
+.service-overview__content {
+    position: relative;
+    min-height: 410px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(26px, 4vw, 48px) clamp(20px, 4vw, 54px);
+}
+
+.service-overview__content h2 {
+    max-width: 620px;
+}
+
+.service-overview__content p {
+    max-width: 620px;
+    margin-top: 22px;
+}
+
+.service-overview__content .btn {
+    margin-top: 30px;
+}
+
+.service-overview__photo-wrap {
+    position: relative;
+    padding: 24px;
+}
+
+.service-overview__photo {
+    height: clamp(410px, 42vw, 610px);
+    border-radius: 0;
+}
+
+.service-overview__photo img {
+    filter: saturate(.92) contrast(1.05);
+}
+
+/* ================================
+   Service Steps / Process
+================================ */
+
+.service-steps {
+    padding: clamp(82px, 10vw, 132px) 0;
+    background: var(--brown-deep);
+}
+
+.service-steps__grid {
+    display: grid;
+    grid-template-columns: minmax(260px, .68fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(38px, 7vw, 92px);
+}
+
+.service-steps__intro {
+    position: sticky;
+    top: 120px;
+    max-width: 520px;
+}
+
+.service-steps__intro p {
+    margin-top: 20px;
+}
+
+.service-steps__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.step-card {
+    position: relative;
+    min-height: 238px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: clamp(24px, 3vw, 34px);
+    border: 1px solid var(--border-soft);
+    border-radius: 24px;
+    background: var(--card-brown-1);
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        background var(--transition);
+}
+
+.step-card:nth-child(2) {
+    background: var(--card-brown-2);
+}
+
+.step-card:nth-child(3) {
+    background: var(--card-brown-dark);
+}
+
+.step-card:nth-child(4) {
+    background: var(--card-brown-3);
+}
+
+.step-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--border-accent);
+}
+
+.step-card__icon {
+    color: var(--accent-yellow);
+}
+
+.step-card__icon svg {
+    width: clamp(42px, 4vw, 60px);
+    height: clamp(42px, 4vw, 60px);
+    stroke-width: 1.55;
+    transition:
+        transform var(--transition),
+        color var(--transition);
+}
+
+.step-card:hover .step-card__icon svg {
+    color: var(--accent-yellow-soft);
+    transform: translateY(-4px) rotate(-4deg);
+}
+
+.step-card__body {
+    margin-top: 28px;
+}
+
+.step-card__body h3 {
+    position: relative;
+    width: fit-content;
+    margin-bottom: 13px;
+    color: var(--text-main);
+    font-size: clamp(1.35rem, 2vw, 1.85rem);
+}
+
+.step-card__body h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.step-card:hover .step-card__body h3::after {
+    transform: scaleX(1);
+}
+
+.step-card__body p {
+    color: var(--text-soft);
+    font-size: .94rem;
+    line-height: 1.62;
+}
+
+/* ================================
+   Related Services
+================================ */
+
+.service-related {
+    padding: clamp(82px, 10vw, 132px) 0;
+    background: var(--black-main);
+}
+
+.service-related__top {
+    display: grid;
+    grid-template-columns: minmax(0, .86fr) minmax(320px, .62fr);
+    align-items: end;
+    gap: 32px;
+    margin-bottom: clamp(36px, 5vw, 58px);
+}
+
+.service-related__top p {
+    max-width: 560px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.related-card {
+    position: relative;
+    min-height: clamp(360px, 34vw, 520px);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    color: var(--text-main);
+    border: 1px solid var(--border-soft);
+    background: var(--brown-deep);
+}
+
+.related-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.related-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .48);
+    transition: background var(--transition);
+}
+
+.related-card:hover img {
+    transform: scale(1.06);
+}
+
+.related-card:hover::after {
+    background: rgba(0, 0, 0, .62);
+}
+
+.related-card__content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: clamp(24px, 3vw, 36px);
+}
+
+.related-card__icon {
+    display: inline-flex;
+    margin-bottom: 22px;
+    color: var(--accent-yellow);
+}
+
+.related-card__icon svg {
+    width: clamp(42px, 4vw, 62px);
+    height: clamp(42px, 4vw, 62px);
+    stroke-width: 1.55;
+    transition:
+        transform var(--transition),
+        color var(--transition);
+}
+
+.related-card:hover .related-card__icon svg {
+    color: var(--accent-yellow-soft);
+    transform: translateY(-5px) rotate(-4deg);
+}
+
+.related-card__content h3 {
+    color: var(--text-main);
+    font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+}
+
+.related-card__content p {
+    max-width: 360px;
+    margin-top: 14px;
+    color: var(--text-soft);
+}
+
+.related-card__content .text-link {
+    margin-top: 24px;
+}
+
+/* ================================
+   Service CTA
+================================ */
+
+.service-page-cta {
+    padding: clamp(64px, 8vw, 96px) 0;
+    background: var(--brown-deep);
+}
+
+.service-page-cta__card {
+    position: relative;
+    isolation: isolate;
+    min-height: 245px;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+    padding: clamp(30px, 5vw, 58px);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-xl);
+    background:
+        linear-gradient(rgba(0, 0, 0, .48), rgba(0, 0, 0, .48)),
+        url("../images/cta/service-cta-logs.jpg") center/cover no-repeat;
+    box-shadow: var(--shadow-dark);
+}
+
+.service-page-cta__card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at right center, rgba(239, 196, 19, .14), transparent 34%);
+}
+
+.service-page-cta__content {
+    max-width: 760px;
+}
+
+.service-page-cta__content h2 {
+    font-size: clamp(2rem, 4vw, 4.1rem);
+}
+
+.service-page-cta__content p {
+    max-width: 620px;
+    margin-top: 16px;
+}
+
+.service-page-cta__content .btn {
+    margin-top: 24px;
+}
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 1100px) {
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .related-card {
+        min-height: 360px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .service-overview__grid,
+    .service-steps__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-overview__content {
+        min-height: auto;
+        padding-inline: 28px;
+    }
+
+    .service-overview__photo-wrap {
+        padding: 18px;
+    }
+
+    .service-overview__photo {
+        height: 480px;
+    }
+
+    .service-steps__intro {
+        position: static;
+        max-width: 760px;
+    }
+
+    .service-related__top {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .service-overview,
+    .service-steps,
+    .service-related {
+        padding: 72px 0;
+    }
+
+    .service-overview__content {
+        padding: 22px 18px 44px;
+    }
+
+    .service-overview__photo-wrap {
+        padding: 12px;
+    }
+
+    .service-overview__photo {
+        height: 380px;
+    }
+
+    .service-steps__cards {
+        grid-template-columns: 1fr;
+    }
+
+    .step-card {
+        min-height: 220px;
+    }
+
+    .related-card {
+        min-height: 330px;
+    }
+
+    .service-page-cta__card {
+        border-radius: 24px;
+        min-height: 235px;
+    }
+}
+
+@media (max-width: 560px) {
+    .service-overview__photo {
+        height: 320px;
+    }
+
+    .step-card {
+        min-height: 205px;
+    }
+
+    .related-card {
+        min-height: 300px;
+    }
+}
