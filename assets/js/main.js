@@ -32,6 +32,9 @@
         renderServiceLists();
         renderServiceSelects();
 
+        applySiteConfigEverywhere();
+        observeSiteConfigChanges();
+
         initHeaderScroll();
         initServicesDropdown();
         initMobileMenu();
@@ -70,8 +73,8 @@
                         <span class="site-logo__mark" aria-hidden="true">
                             ${getLogoSvg()}
                         </span>
-                        <span class="site-logo__text">
-                            Oak<span class="site-logo__accent">line</span>
+                  <span class="site-logo__text">
+                     ${getLogoText()}
                         </span>
                     </a>
 
@@ -116,9 +119,9 @@
                             <span class="site-logo__mark" aria-hidden="true">
                                 ${getLogoSvg()}
                             </span>
-                            <span class="site-logo__text">
-                                Oak<span class="site-logo__accent">line</span>
-                            </span>
+                         <span class="site-logo__text">
+    ${getLogoText()}
+</span>
                         </a>
 
                         <button class="icon-btn mobile-menu__close" type="button" aria-label="Close menu" data-mobile-close>
@@ -174,9 +177,9 @@
                                     <span class="site-logo__mark" aria-hidden="true">
                                         ${getLogoSvg()}
                                     </span>
-                                    <span class="site-logo__text">
-                                        Oak<span class="site-logo__accent">line</span>
-                                    </span>
+                                  <span class="site-logo__text">
+    ${getLogoText()}
+</span>
                                 </a>
 
                                 <p>${safeText(config.footer?.description)}</p>
@@ -682,6 +685,185 @@
                     panel.classList.add('is-open');
                 }
             });
+        });
+    }
+
+    function getLogoText() {
+        const first = safeText(config.company?.nameFirst);
+        const accent = safeText(config.company?.nameAccent);
+
+        if (first || accent) {
+            return `${escapeHtml(first)}<span class="site-logo__accent">${escapeHtml(accent)}</span>`;
+        }
+
+        return escapeHtml(safeText(config.company?.name, 'Oakline'));
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? '')
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;')
+            .replaceAll('"', '&quot;')
+            .replaceAll("'", '&#039;');
+    }
+
+    function getGlobalConfigTokens() {
+        return [
+            {
+                from: 'Oakline',
+                to: safeText(config.company?.name, 'Oakline')
+            },
+            {
+                from: 'OKL-TREE-2048',
+                to: safeText(config.company?.companyId, 'OKL-TREE-2048')
+            },
+            {
+                from: 'USA Service Area',
+                to: safeText(config.company?.address, 'USA Service Area')
+            },
+            {
+                from: 'hello@oakline.com',
+                to: safeText(config.contact?.email, 'hello@oakline.com')
+            },
+            {
+                from: '(888) 555-0148',
+                to: safeText(config.contact?.phoneDisplay, '(888) 555-0148')
+            },
+            {
+                from: '+18885550148',
+                to: safeText(config.contact?.phoneRaw, '+18885550148')
+            },
+            {
+                from: 'Call Oakline',
+                to: safeText(config.contact?.phoneButtonText, 'Call Oakline')
+            }
+        ];
+    }
+
+    function replaceConfigTokens(value) {
+        if (typeof value !== 'string' || !value) return value;
+
+        let nextValue = value;
+
+        getGlobalConfigTokens().forEach((token) => {
+            if (!token.from || token.to === undefined || token.to === null) return;
+
+            nextValue = nextValue.split(token.from).join(token.to);
+        });
+
+        return nextValue;
+    }
+
+    function applySiteConfigEverywhere(root = document.body) {
+        if (!root) return;
+
+        replaceTextNodes(root);
+        replaceCommonAttributes(root);
+        refreshConfigLinks(root);
+    }
+
+    function replaceTextNodes(root) {
+        const ignoredTags = new Set([
+            'SCRIPT',
+            'STYLE',
+            'NOSCRIPT',
+            'TEMPLATE',
+            'SVG',
+            'PATH',
+            'CLIPPATH',
+            'DEFS'
+        ]);
+
+        const walker = document.createTreeWalker(
+            root,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode(node) {
+                    const parent = node.parentElement;
+
+                    if (!parent || ignoredTags.has(parent.tagName)) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+
+        const textNodes = [];
+
+        while (walker.nextNode()) {
+            textNodes.push(walker.currentNode);
+        }
+
+        textNodes.forEach((node) => {
+            const replaced = replaceConfigTokens(node.nodeValue);
+
+            if (replaced !== node.nodeValue) {
+                node.nodeValue = replaced;
+            }
+        });
+    }
+
+    function replaceCommonAttributes(root) {
+        const attributes = [
+            'href',
+            'aria-label',
+            'title',
+            'alt',
+            'placeholder',
+            'value'
+        ];
+
+        const elements = root.querySelectorAll('*');
+
+        elements.forEach((element) => {
+            attributes.forEach((attribute) => {
+                if (!element.hasAttribute(attribute)) return;
+
+                const currentValue = element.getAttribute(attribute);
+                const nextValue = replaceConfigTokens(currentValue);
+
+                if (nextValue !== currentValue) {
+                    element.setAttribute(attribute, nextValue);
+                }
+            });
+        });
+    }
+
+    function refreshConfigLinks(root = document.body) {
+        root.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+            link.setAttribute('href', `mailto:${safeText(config.contact?.email)}`);
+        });
+
+        root.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+            link.setAttribute('href', `tel:${safeText(config.contact?.phoneRaw)}`);
+        });
+    }
+
+    function observeSiteConfigChanges() {
+        if (!document.body || window.__oaklineConfigObserverStarted) return;
+
+        window.__oaklineConfigObserverStarted = true;
+
+        let timer = null;
+
+        const observer = new MutationObserver((mutations) => {
+            const shouldUpdate = mutations.some((mutation) => mutation.addedNodes.length);
+
+            if (!shouldUpdate) return;
+
+            window.clearTimeout(timer);
+
+            timer = window.setTimeout(() => {
+                applySiteConfigEverywhere();
+            }, 60);
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
         });
     }
 

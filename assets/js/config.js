@@ -3,10 +3,10 @@
 window.SiteConfig = {
     company: {
         name: 'Oakline',
+        nameFirst: 'Oak',
+        nameAccent: 'line',
         companyId: 'OKL-TREE-2048',
         address: 'USA Service Area',
-        serviceArea:
-            'Independent Tree Removal provider matching across selected areas in the United States'
     },
 
     contact: {
