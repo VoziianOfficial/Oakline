@@ -563,3 +563,155 @@
         transform: translate3d(0, 0, 0);
     }
 }
+
+/* ================================
+   Home Numbers Strip
+================================ */
+
+.home-numbers-strip {
+    position: relative;
+    width: 100%;
+    padding: clamp(34px, 5vw, 58px) 0;
+    background: var(--light-bg);
+    color: var(--light-text);
+    overflow: hidden;
+    border-top: 1px solid rgba(90, 62, 34, .12);
+    border-bottom: 1px solid rgba(90, 62, 34, .12);
+}
+
+.home-numbers-strip::before {
+    content: "";
+    position: absolute;
+    left: clamp(18px, 5vw, 86px);
+    top: 22px;
+    width: clamp(80px, 10vw, 150px);
+    height: 3px;
+    background: #8A5D2B;
+    opacity: .5;
+    pointer-events: none;
+}
+
+.home-numbers-strip::after {
+    content: "";
+    position: absolute;
+    right: -90px;
+    bottom: -130px;
+    width: clamp(230px, 28vw, 420px);
+    height: clamp(230px, 28vw, 420px);
+    border: 1px solid rgba(90, 62, 34, .08);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.home-numbers-strip__inner {
+    position: relative;
+    z-index: 2;
+    width: min(1320px, calc(100% - 40px));
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+}
+
+.home-numbers-strip__item {
+    position: relative;
+    min-height: 108px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    border-right: 1px solid rgba(90, 62, 34, .14);
+}
+
+.home-numbers-strip__item:first-child {
+    border-left: 1px solid rgba(90, 62, 34, .14);
+}
+
+.home-numbers-strip__item::after {
+    content: "";
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    bottom: 8px;
+    height: 3px;
+    background: #9B6A3B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition);
+}
+
+.home-numbers-strip__item strong {
+    display: block;
+    color: #2C2016;
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(3rem, 7vw, 7.4rem);
+    font-weight: 500;
+    line-height: .9;
+    letter-spacing: -.07em;
+    transition:
+        color var(--transition),
+        transform var(--transition);
+}
+
+/* hidden but accessible labels */
+.home-numbers-strip__item span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.home-numbers-strip__item:hover::after {
+    transform: scaleX(1);
+}
+
+.home-numbers-strip__item:hover strong {
+    color: #9B6A3B;
+    transform: translateY(-5px);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .home-numbers-strip__inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-numbers-strip__item:nth-child(2) {
+        border-right: 1px solid rgba(90, 62, 34, .14);
+    }
+
+    .home-numbers-strip__item:nth-child(odd) {
+        border-left: 1px solid rgba(90, 62, 34, .14);
+    }
+
+    .home-numbers-strip__item:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(90, 62, 34, .14);
+    }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    .home-numbers-strip {
+        padding: 28px 0;
+    }
+
+    .home-numbers-strip__inner {
+        width: calc(100% - 28px);
+    }
+
+    .home-numbers-strip__item {
+        min-height: 92px;
+    }
+
+    .home-numbers-strip__item strong {
+        font-size: clamp(2.7rem, 17vw, 4.7rem);
+    }
+
+    .home-numbers-strip__item::after {
+        bottom: 13px;
+        left: 28%;
+        right: 28%;
+        height: 2px;
+    }
+}
