@@ -650,3 +650,210 @@
         line-height: 1.65;
     }
 }
+
+/* ================================
+   Service Questions CTA
+================================ */
+
+.service-question-cta {
+    position: relative;
+    padding: clamp(58px, 7vw, 92px) 0;
+    background: var(--light-bg);
+    color: var(--light-text);
+    overflow: hidden;
+    border-top: 1px solid rgba(90, 62, 34, .13);
+    border-bottom: 1px solid rgba(90, 62, 34, .13);
+}
+
+.service-question-cta__logo-bg {
+    position: absolute;
+    right: clamp(-90px, -4vw, -20px);
+    top: 50%;
+    width: clamp(280px, 34vw, 560px);
+    color: rgba(122, 78, 37, .08);
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-question-cta__logo-bg svg {
+    width: 100%;
+    height: auto;
+}
+
+.service-question-cta::before {
+    content: "";
+    position: absolute;
+    left: clamp(20px, 5vw, 86px);
+    top: 28px;
+    width: clamp(84px, 11vw, 160px);
+    height: 3px;
+    background: #8A5D2B;
+    opacity: .56;
+    pointer-events: none;
+}
+
+.service-question-cta .container-wide {
+    position: relative;
+    z-index: 2;
+}
+
+.service-question-cta__grid {
+    display: grid;
+    grid-template-columns: minmax(280px, .8fr) minmax(320px, 1fr) auto;
+    align-items: center;
+    gap: clamp(28px, 5vw, 70px);
+}
+
+.service-question-cta__intro {
+    max-width: 620px;
+}
+
+.service-question-cta__intro .section-kicker {
+    color: var(--accent-yellow-dark);
+}
+
+.service-question-cta__intro h2 {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    max-width: 640px;
+    color: var(--light-text);
+    transition: color .32s ease;
+}
+
+.service-question-cta__intro h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    height: 3px;
+    background: #7A4E25;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .32s ease;
+}
+
+.service-question-cta__intro:hover h2 {
+    color: #6F4B26;
+}
+
+.service-question-cta__intro:hover h2::after {
+    transform: scaleX(1);
+}
+
+.service-question-cta__questions {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid rgba(60, 42, 24, .16);
+}
+
+.service-question-cta__questions p {
+    position: relative;
+    margin: 0;
+    padding: 15px 0;
+    color: var(--light-muted);
+    font-size: clamp(.95rem, 1.1vw, 1.05rem);
+    line-height: 1.55;
+    border-bottom: 1px solid rgba(60, 42, 24, .16);
+    transition:
+        color var(--transition),
+        padding var(--transition);
+}
+
+.service-question-cta__questions p::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 120px;
+    height: 2px;
+    background: #9B6A3B;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition);
+}
+
+.service-question-cta__questions p:hover {
+    color: #3B2A1B;
+    padding-left: 10px;
+}
+
+.service-question-cta__questions p:hover::before {
+    transform: scaleX(1);
+}
+
+.service-question-cta__action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.service-question-cta__action .btn {
+    white-space: nowrap;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+    .service-question-cta__grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .service-question-cta__action {
+        justify-content: flex-start;
+    }
+
+    .service-question-cta__logo-bg {
+        right: -120px;
+        bottom: -130px;
+        top: auto;
+        transform: none;
+        width: 360px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    .service-question-cta {
+        padding: 54px 0;
+    }
+
+    .service-question-cta__intro h2 {
+        max-width: 100%;
+    }
+
+    .service-question-cta__intro h2::after {
+        bottom: -8px;
+    }
+
+    .service-question-cta__questions p {
+        padding: 13px 0;
+        font-size: .9rem;
+    }
+
+    .service-question-cta__questions p:hover {
+        padding-left: 0;
+    }
+
+    .service-question-cta__logo-bg {
+        width: 260px;
+        right: -95px;
+        bottom: -95px;
+    }
+
+    .service-question-cta__action .btn {
+        width: 100%;
+    }
+}
+
+.service-question-cta__intro h2 {
+    font-size: clamp(1.8rem, 3.2vw, 3.25rem);
+    line-height: 1.04;
+}
+@media (max-width: 560px) {
+    .service-question-cta__intro h2 {
+        font-size: clamp(1.65rem, 8vw, 2.55rem);
+        line-height: 1.06;
+    }
+}
