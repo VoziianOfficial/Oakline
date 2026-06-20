@@ -806,3 +806,22 @@
     }
 }
 
+/* ================================
+   About More Text Color Fix
+================================ */
+
+.about-more {
+    color: var(--light-text);
+}
+
+.about-more__content h2 {
+    color: var(--light-text);
+}
+
+.about-more__content p {
+    color: var(--light-muted);
+}
+
+.about-more__content .section-kicker {
+    color: var(--accent-yellow-dark);
+}
