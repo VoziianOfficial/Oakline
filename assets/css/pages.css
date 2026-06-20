@@ -1470,3 +1470,121 @@
         width: 140px;
     }
 }
+
+/* ================================
+   Testimonials Swiper Mobile/Tablet Fix
+================================ */
+
+.testimonials {
+    overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+    .testimonials {
+        overflow-x: hidden;
+    }
+}
+
+.testimonials .container,
+.testimonials__grid,
+.testimonials__grid>*,
+.testimonials-swiper,
+.testimonials-pagination {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.testimonials__grid>div[data-aos] {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.testimonials-swiper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.testimonials-swiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+.testimonials-swiper .swiper-slide {
+    height: auto;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.testimonial-card {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .testimonials__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 34px;
+    }
+
+    .testimonials__intro {
+        max-width: 100%;
+    }
+
+    .testimonials__grid>div[data-aos] {
+        overflow: hidden;
+    }
+
+    .testimonials-swiper {
+        padding-inline: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .testimonials [data-aos="fade-left"],
+    .testimonials [data-aos="fade-right"] {
+        transform: translate3d(0, 22px, 0);
+    }
+
+    .testimonials [data-aos="fade-left"].aos-animate,
+    .testimonials [data-aos="fade-right"].aos-animate {
+        transform: translate3d(0, 0, 0);
+    }
+
+    .testimonial-card {
+        min-height: auto;
+        padding: 24px;
+        gap: 22px;
+    }
+
+    .testimonial-card__text {
+        font-size: .96rem;
+        line-height: 1.65;
+    }
+
+    .testimonial-card__quote svg {
+        width: 34px;
+        height: 34px;
+    }
+
+    .testimonials-pagination {
+        margin-top: 16px;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 420px) {
+    .testimonial-card {
+        padding: 22px 18px;
+    }
+
+    .testimonial-card__bottom {
+        gap: 12px;
+    }
+}
