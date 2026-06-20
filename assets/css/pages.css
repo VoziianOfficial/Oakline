@@ -1362,3 +1362,111 @@
         height: 40px;
     }
 }
+
+/* ================================
+   Contact Intro Text Visibility + Hover
+================================ */
+
+.contact-intro {
+    color: var(--light-text);
+}
+
+.contact-intro__content .section-kicker {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    color: var(--accent-yellow-dark);
+}
+
+.contact-intro__content .section-kicker::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-yellow-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+}
+
+.contact-intro__content:hover .section-kicker::after,
+.contact-intro__content .section-kicker:hover::after {
+    transform: scaleX(1);
+}
+
+.contact-intro__content h2 {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    max-width: 760px;
+    color: var(--light-text);
+    transition: color .32s ease;
+}
+
+.contact-intro__content h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -11px;
+    width: 100%;
+    height: 3px;
+    background: #7A4E25;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .32s ease;
+}
+
+.contact-intro__content:hover h2,
+.contact-intro__content h2:hover {
+    color: #6F4B26;
+}
+
+.contact-intro__content:hover h2::after,
+.contact-intro__content h2:hover::after {
+    transform: scaleX(1);
+}
+
+.contact-intro__content p {
+    position: relative;
+    color: var(--light-muted);
+    transition: color .28s ease;
+}
+
+.contact-intro__content p::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: min(180px, 70%);
+    height: 2px;
+    background: rgba(122, 78, 37, .58);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+}
+
+.contact-intro__content p:hover {
+    color: #3B2A1B;
+}
+
+.contact-intro__content p:hover::after {
+    transform: scaleX(1);
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    .contact-intro__content h2 {
+        max-width: 100%;
+    }
+
+    .contact-intro__content h2::after {
+        bottom: -8px;
+    }
+
+    .contact-intro__content p::after {
+        bottom: -9px;
+        width: 140px;
+    }
+}
