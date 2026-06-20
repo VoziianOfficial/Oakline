@@ -1083,3 +1083,148 @@
         bottom: -9px;
     }
 }
+
+/* ================================
+   Services Intro Text Visibility Fix
+================================ */
+
+.services-intro {
+    color: var(--light-text);
+}
+
+.services-intro .section-kicker {
+    color: var(--accent-yellow-dark);
+}
+
+.services-intro__left h2 {
+    color: var(--light-text);
+}
+
+.services-intro__left p,
+.services-intro__right p {
+    color: var(--light-muted);
+}
+
+.services-intro__divider {
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(90, 62, 34, .34),
+            transparent);
+}
+
+@media (max-width: 992px) {
+    .services-intro__divider {
+        background: linear-gradient(to right,
+                transparent,
+                rgba(90, 62, 34, .34),
+                transparent);
+    }
+}
+
+/* ================================
+   Services Intro Hover Underlines
+================================ */
+
+.services-intro__left h2 {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    max-width: 680px;
+    transition: color .32s ease;
+}
+
+.services-intro__left h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 100%;
+    height: 3px;
+    background: #7A4E25;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .32s ease;
+}
+
+.services-intro__left:hover h2,
+.services-intro__left h2:hover {
+    color: #6F4B26;
+}
+
+.services-intro__left:hover h2::after,
+.services-intro__left h2:hover::after {
+    transform: scaleX(1);
+}
+
+/* Small underline hover for kicker */
+.services-intro .section-kicker {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+
+.services-intro .section-kicker::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -7px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-yellow-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+}
+
+.services-intro__left:hover .section-kicker::after,
+.services-intro .section-kicker:hover::after {
+    transform: scaleX(1);
+}
+
+/* Paragraph hover underline: one clean line under the block, not every text line */
+.services-intro__left p,
+.services-intro__right p {
+    position: relative;
+    transition: color .28s ease;
+}
+
+.services-intro__left p::after,
+.services-intro__right p::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    width: min(180px, 70%);
+    height: 2px;
+    background: rgba(122, 78, 37, .58);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .28s ease;
+}
+
+.services-intro__left p:hover,
+.services-intro__right p:hover {
+    color: #3B2A1B;
+}
+
+.services-intro__left p:hover::after,
+.services-intro__right p:hover::after {
+    transform: scaleX(1);
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+    .services-intro__left h2 {
+        max-width: 100%;
+    }
+
+    .services-intro__left h2::after {
+        bottom: -8px;
+    }
+
+    .services-intro__left p::after,
+    .services-intro__right p::after {
+        bottom: -9px;
+        width: 140px;
+    }
+}
