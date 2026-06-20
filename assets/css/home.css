@@ -513,3 +513,53 @@
     }
 
 }
+/* ================================
+   Home About Safe Mobile Overflow Fix
+   Does not change desktop layout or corner positions
+================================ */
+
+.home-about {
+    overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+    .home-about {
+        overflow-x: hidden;
+    }
+}
+
+/* only tablet/mobile: clip AOS overflow, keep original padding/corners */
+@media (max-width: 992px) {
+
+    .home-about .container-wide,
+    .home-about__grid {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .home-about__content,
+    .home-about__photo-wrap,
+    .home-about__photo {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .home-about__photo img {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* mobile only: neutralize horizontal AOS shift inside this section */
+@media (max-width: 768px) {
+
+    .home-about [data-aos="fade-left"],
+    .home-about [data-aos="fade-right"] {
+        transform: translate3d(0, 24px, 0);
+    }
+
+    .home-about [data-aos="fade-left"].aos-animate,
+    .home-about [data-aos="fade-right"].aos-animate {
+        transform: translate3d(0, 0, 0);
+    }
+}
