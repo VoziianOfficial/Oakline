@@ -15,11 +15,20 @@
         initContactForms();
 
         refreshIcons();
+        refreshAos();
     });
 
     function refreshIcons() {
         if (window.lucide) {
             window.lucide.createIcons();
+        }
+    }
+
+    function refreshAos() {
+        if (window.AOS) {
+            window.setTimeout(() => {
+                window.AOS.refreshHard();
+            }, 80);
         }
     }
 
