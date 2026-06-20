@@ -1229,3 +1229,136 @@
     }
 }
 
+/* ================================
+   Horizontal Services Icon Band
+================================ */
+
+.services-icon-band {
+    position: relative;
+    width: 100%;
+    padding: clamp(30px, 4vw, 42px) 0;
+    background: var(--light-bg);
+    overflow: hidden;
+    border-top: 1px solid rgba(90, 62, 34, .12);
+    border-bottom: 1px solid rgba(90, 62, 34, .12);
+}
+
+.services-icon-band__track {
+    width: min(1280px, calc(100% - 40px));
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0;
+}
+
+.services-icon-band__item {
+    position: relative;
+    min-height: 118px;
+    display: grid;
+    place-items: center;
+    color: #7A4E25;
+    border-right: 1px solid rgba(90, 62, 34, .12);
+    transition:
+        color var(--transition),
+        background var(--transition),
+        transform var(--transition);
+}
+
+.services-icon-band__item:first-child {
+    border-left: 1px solid rgba(90, 62, 34, .12);
+}
+
+.services-icon-band__item::after {
+    content: "";
+    position: absolute;
+    left: 28%;
+    right: 28%;
+    bottom: 22px;
+    height: 2px;
+    background: #9B6A3B;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform var(--transition);
+}
+
+.services-icon-band__item svg {
+    width: clamp(42px, 4vw, 64px);
+    height: clamp(42px, 4vw, 64px);
+    stroke-width: 1.6;
+    transition:
+        transform var(--transition),
+        color var(--transition);
+}
+
+.services-icon-band__item:hover {
+    color: #9B6A3B;
+    background: rgba(122, 78, 37, .04);
+    transform: translateY(-4px);
+}
+
+.services-icon-band__item:hover::after {
+    transform: scaleX(1);
+}
+
+.services-icon-band__item:hover svg {
+    color: #9B6A3B;
+    transform: translateY(-4px) rotate(-4deg) scale(1.06);
+}
+
+.services-icon-band__item:focus-visible {
+    outline: 2px solid #9B6A3B;
+    outline-offset: -2px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .services-icon-band__track {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .services-icon-band__item:nth-child(4n + 1) {
+        border-left: 1px solid rgba(90, 62, 34, .12);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .services-icon-band {
+        padding: 22px 0;
+    }
+
+    .services-icon-band__track {
+        width: calc(100% - 28px);
+        display: flex;
+        gap: 0;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+
+    .services-icon-band__track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .services-icon-band__item {
+        flex: 0 0 120px;
+        min-height: 96px;
+        scroll-snap-align: start;
+        border-left: 1px solid rgba(90, 62, 34, .12);
+    }
+
+    .services-icon-band__item:last-child {
+        border-right: 1px solid rgba(90, 62, 34, .12);
+    }
+
+    .services-icon-band__item::after {
+        left: 24%;
+        right: 24%;
+        bottom: 16px;
+    }
+
+    .services-icon-band__item svg {
+        width: 40px;
+        height: 40px;
+    }
+}
